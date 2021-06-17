@@ -1,6 +1,9 @@
 import React from 'react'
+import { connect } from 'react-redux'
+
 import IconButton from '../template/iconButton'
-export default props => {
+
+const pendenciaLista = props => {
   
   const renderRows = () => {
     const list = props.list || []
@@ -35,3 +38,6 @@ export default props => {
     </table>
   )
 }
+
+const mapsStateToprops = state => ({list: state.pendencia.list})
+export default connect(mapsStateToprops)(pendenciaLista)
