@@ -1,8 +1,10 @@
 import React from 'react'
+import { connect } from 'react-redux'
+
 import Grid from '../template/grid'
 import IconButton from '../template/iconButton'
 
-export default props => {
+const pendenciaForm = props => {
     const keyHandler = (e) => {
         if(e.key === 'Enter'){
             //Se o shift tiver pressionado faça uma pesquisa, se ele não tiver pressionado adicione.
@@ -33,3 +35,6 @@ export default props => {
         </div>
     )
 }
+
+const mapStateToProps = state => ({description: state.pendencia.description})
+export default connect(mapStateToProps)(pendenciaForm)
