@@ -1,23 +1,8 @@
 import { combineReducers } from "redux"
+import pendenciaReducer from "../pendencia/pendenciaReducer"
 
 const rootReducer = combineReducers({
-    pendencia: () => ({
-        description: 'Ler livro',
-        list: [{
-            _id: 1,
-            description: 'Pagar fatura do cartão',
-            done: true
-        }, {
-            _id: 2,
-            description: 'Reunião com a equipe às 10:00',
-            done: false
-
-        }, {
-            _id: 3,
-            description: 'Consulta médicas na terça depois do almoço',
-            done: false
-        }]
-    })
+    pendencia: pendenciaReducer
 })
 
 export default rootReducer

@@ -1,8 +1,10 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 
 import Grid from '../template/grid'
 import IconButton from '../template/iconButton'
+import { changeDescription } from './pendenciaActions'
 
 const pendenciaForm = props => {
     const keyHandler = (e) => {
@@ -19,7 +21,7 @@ const pendenciaForm = props => {
             <div className='col-xs-12 col-sm-9 col-md-10'>
                 <input id='description' className='form-control' 
                 placeholder='Adicione uma tarefa'
-                 onChange={props.handleChange}
+                 onChange={props.changeDescription}
                 value={props.description}
                 onKeyUp={keyHandler}></input>
             </div>
@@ -37,4 +39,6 @@ const pendenciaForm = props => {
 }
 
 const mapStateToProps = state => ({description: state.pendencia.description})
-export default connect(mapStateToProps)(pendenciaForm)
+const mapDispatchToProps = dispatch => 
+    bindActionCreators({ changeDescription }, dispatch)
+export default connect(mapStateToProps, mapDispatchToProps)(pendenciaForm)
