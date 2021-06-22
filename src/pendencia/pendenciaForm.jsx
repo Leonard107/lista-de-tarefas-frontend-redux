@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux'
 
 import Grid from '../template/grid'
 import IconButton from '../template/iconButton'
-import { changeDescription, search } from './pendenciaActions'
+import { add, changeDescription, search } from './pendenciaActions'
 
 class  pendenciaForm extends Component {
     constructor(props) {
@@ -17,9 +17,10 @@ class  pendenciaForm extends Component {
     }
 
     keyHandler(e) {
+        const { add, search, description} = this.props
         if(e.key === 'Enter'){
             //Se o shift tiver pressionado faça uma pesquisa, se ele não tiver pressionado adicione.
-            e.shiftKey ? this.props.handleSearch() : this.props.handleAdd()
+            e.shiftKey ? search() : add(description)
             //Se apertar o botão Esc ele limpa o formulário
         } else if (e.key === 'Escape') {
             props.handleClear()
@@ -28,6 +29,7 @@ class  pendenciaForm extends Component {
     }
 
     render() {
+        const { add, search, description} = this.props
         return (
             <div role='form' className='pendenciaForm'>
                 <div className='col-xs-12 col-sm-9 col-md-10'>
@@ -40,9 +42,9 @@ class  pendenciaForm extends Component {
     
                 <div className='col-xs-12 col-sm-9 col-md-2'>
                     <IconButton style='primary' icon='plus'
-                        onClick={this.props.handleAdd}></IconButton>
+                        onClick={() => add(description)}></IconButton>
                     <IconButton style='info' icon='search'
-                        onClick={this.props.handleSearch}></IconButton>
+                        onClick={() => search()}></IconButton>
                     <IconButton style='default' icon='close'
                         onClick={this.props.handleClear}></IconButton>
                 </div>
@@ -53,5 +55,5 @@ class  pendenciaForm extends Component {
 
 const mapStateToProps = state => ({description: state.pendencia.description})
 const mapDispatchToProps = dispatch => 
-    bindActionCreators({ changeDescription, search }, dispatch)
+    bindActionCreators({ add, changeDescription, search }, dispatch)
 export default connect(mapStateToProps, mapDispatchToProps)(pendenciaForm)
