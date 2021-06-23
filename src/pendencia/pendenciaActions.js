@@ -23,3 +23,24 @@ export const add = (description) => {
             .then(resp => dispatch(search()))
     }
 }
+
+export const markAsDone = (pendencia) => {
+    return dispatch => {
+        axios.put(`${URL}/${pendencia._id}`, { ...pendencia, done: true})
+            .then(resp => dispatch(search()))
+    }
+}
+
+export const markAsPending = (pendencia) => {
+    return dispatch => {
+        axios.put(`${URL}/${pendencia._id}`, {...pendencia, done: false})
+        .then(resp => dispatch(search()))
+    }
+}
+
+export const remove = (pendencia) => {
+    return dispatch => {
+        axios.delete(`${URL}/${pendencia._id}`)
+        .then(resp => dispatch(search()))
+    }
+}
