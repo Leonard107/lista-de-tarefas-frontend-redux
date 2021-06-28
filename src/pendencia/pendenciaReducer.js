@@ -6,7 +6,7 @@ export default (state = INITIAL_STATE, action) => {
             return { ...state, description: action.payload }
         case 'PENDENCIA_SEARCHED':
             return { ...state, list: action.payload.data}
-        case 'PENDENCIA_ADDED':
+        case 'PENDENCIA_CLEAR':
             return { ...state, description: ''}
         default:
             return state

@@ -19,7 +19,7 @@ export const search = () => {
 export const add = (description) => {
     return dispatch => {
         axios.post(URL, { description })
-            .then(resp => dispatch({type: 'PENDENCIA_ADDED', payload: resp.data }))
+            .then(resp => dispatch(clear()))
             .then(resp => dispatch(search()))
     }
 }
@@ -43,4 +43,8 @@ export const remove = (pendencia) => {
         axios.delete(`${URL}/${pendencia._id}`)
         .then(resp => dispatch(search()))
     }
+}
+
+export const clear = () => {
+    return {type: 'PENDENCIA_CLEAR'}
 }
