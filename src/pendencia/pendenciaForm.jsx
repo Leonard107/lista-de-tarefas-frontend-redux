@@ -20,7 +20,7 @@ class  pendenciaForm extends Component {
         const { add, search, description, clear} = this.props
         if(e.key === 'Enter'){
             //Se o shift tiver pressionado faça uma pesquisa, se ele não tiver pressionado adicione.
-            e.shiftKey ? search() : add(description)
+            e.shiftKey ? search(description) : add(description)
             //Se apertar o botão Esc ele limpa o formulário
         } else if (e.key === 'Escape') {
             clear()
@@ -44,7 +44,7 @@ class  pendenciaForm extends Component {
                     <IconButton style='primary' icon='plus'
                         onClick={() => add(description)}></IconButton>
                     <IconButton style='info' icon='search'
-                        onClick={() => search()}></IconButton>
+                        onClick={() => search(description)}></IconButton>
                     <IconButton style='default' icon='close'
                         onClick={this.props.clear}></IconButton>
                 </div>
